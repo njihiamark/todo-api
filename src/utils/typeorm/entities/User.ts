@@ -2,7 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
@@ -10,7 +10,7 @@ import { Todo } from './Todo';
 
 @Entity({ name: 'users' })
 export class User {
-  @PrimaryColumn('uuid', { default: () => 'cuid()' })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ name: 'first_name' })

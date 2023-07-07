@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TodosModule } from './todos/todos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { entities } from './utils/typeorm';
 
 @Module({
   imports: [
@@ -12,10 +13,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
+      password: 'password',
       database: 'todos',
-      entities: [],
       synchronize: true,
+      entities,
     }),
   ],
   controllers: [],
