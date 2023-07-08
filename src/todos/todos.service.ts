@@ -61,10 +61,10 @@ export class TodosService {
     });
     if (!user)
       throw new HttpException('User not found.', HttpStatus.BAD_REQUEST);
-    await this.todoRepository.update({ id }, { ...updateTodoDto });
-    return await this.todoRepository.findOne({
-      where: { id },
-    });
+    delete updateTodoDto.userId;
+
+    const newTodo = this.todoRepository.create({ ...updateTodoDto, user });
+    return this.todoRepository.update({ id }, { ...newTodo });
   }
 
   async remove(id: string, todoUserDto: TodoUserDto) {
