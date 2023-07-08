@@ -10,6 +10,7 @@ import {
 import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
+import { TodoUserDto } from './dto/todo-user.dto';
 
 @Controller('todos')
 export class TodosController {
@@ -21,22 +22,22 @@ export class TodosController {
   }
 
   @Get()
-  findAll() {
-    return this.todosService.findAll();
+  findAll(@Body() todoUserDto: TodoUserDto) {
+    return this.todosService.findAll(todoUserDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.todosService.findOne(+id);
+  findOne(@Param('id') id: string, @Body() todoUserDto: TodoUserDto) {
+    return this.todosService.findOne(id, todoUserDto);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
-    return this.todosService.update(+id, updateTodoDto);
+    return this.todosService.update(id, updateTodoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.todosService.remove(+id);
+  remove(@Param('id') id: string, @Body() todoUserDto: TodoUserDto) {
+    return this.todosService.remove(id, todoUserDto);
   }
 }

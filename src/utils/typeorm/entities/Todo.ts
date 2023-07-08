@@ -19,7 +19,7 @@ export class Todo {
   @Column({ name: 'description' })
   description: string;
 
-  @Column({ name: 'status' })
+  @Column({ name: 'status', default: false })
   status: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
