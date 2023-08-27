@@ -22,6 +22,9 @@ export class User {
   @Column({ unique: true })
   email: string;
 
+  @Column({ name: 'active' })
+  active: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
